@@ -1,9 +1,11 @@
+# Author-Mayuri
+
 from flask import Flask
-from twitterOptions.twitter_api import apiroutes
 
 
 def create_app():
     app = Flask(__name__)
     with app.app_context():
-        app.register_blueprint(apiroutes)
+        from .twitter_api.apiroutes import twitter_api_blueprint
+        app.register_blueprint(twitter_api_blueprint)
         return app
