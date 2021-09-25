@@ -51,10 +51,27 @@ def lookup_tweet(username):
 def update_tweet():
     return {"message": "retweet tweet successfully"}
 
+# Author-Pratiksha
+
 
 @twitter_api_blueprint.route('/delete', methods=['DELETE'])
-def delete():
-    return {"message": "Delete Re-tweet successfully"}
+def delete_tweet(tweetId, username):
+    from helper.readyaml import read_yaml
+    my_dict = read_yaml()
+    from twitterOptions.twitter_api.UserOnTwitter import get_userid
+    user = get_userid(username)
+    userid = user['data']['id']
+
+    # create a request to fetch tweets and return response on web page- build a request that contains userid field.
+    my_headers = {'Authorization':
+                      'Bearer {}'.format(my_dict['credentials']['token'])}
+
+    response = requests.request(method="DELETE", url="https://api.twitter.com/2/users/{}".format(tweetId),
+                                headers=my_headers)
+    print(response.status_code)
+    if response.status_code == 401:
+        return False
+    return {"message": "Delete ReTweet Successfully"}
 
 
 # Author-Mayuri
