@@ -1,14 +1,18 @@
 import json
-from flask import Blueprint, jsonify
+from time import sleep
+
+from flask import Blueprint, jsonify, render_template
 import requests
 from werkzeug.http import HTTP_STATUS_CODES
+
+import os
 
 twitter_api_blueprint = Blueprint("twitter_api", __name__, "url_prefix=/api/option")
 
 
 @twitter_api_blueprint.route('/', methods=['GET'])
 def landing_page():
-    return "Welcome to HomePage"
+    return render_template('Welcome to twitter functions')
 
 
 # Author-Mayuri(implement lookup tweets )
@@ -28,16 +32,19 @@ def lookup_tweet(username):
 
     response = requests.get(url="https://api.twitter.com/2/users/{}/tweets".format(userid), headers=my_headers)
     tweets = response.json()
-    mytweetlist = tweets["data"]
+    mytweetlist = tweets['data']
     tweet_dict = {}
+    tweet_text = []
     counter = 1
     for tweet in mytweetlist:
-        tweet_dict[counter] = tweet['text']
-        counter = counter + 1
-    return json.dumps(tweet_dict, indent=4)
-
-
-
+        # tweet_dict[counter] = tweet['text']
+        tweet_text.append(tweet['text'])
+        print(tweet_text)
+        # counter = counter + 1
+    # print(tweet_dict)
+    # data_json = json.dumps(tweet_dict, indent=6)
+    # response = jsonify({'results': tweet_text})
+    return render_template('tweetlookup.html', tweet_text=tweet_text, username=username)
 
 
 @twitter_api_blueprint.route('/update', methods=['PUT'])
