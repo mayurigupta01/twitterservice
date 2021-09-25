@@ -8,3 +8,13 @@ below API's were consumes
 and return the tweets back in response. 
 This end point shows tweets on the html page .
 Twitter API picked - https://api.twitter.com/2/tweets/:id where id is the **user id **
+  Pick below username in place of username variable in the endpoint.
+Elonmusk
+Britneyspear
+Katyperry
+rihanna
+taylorswift13
+ArianaGrande
+justinbieber
+BrunoMars
+ladygaga
