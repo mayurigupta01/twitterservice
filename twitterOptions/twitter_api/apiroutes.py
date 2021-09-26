@@ -1,3 +1,5 @@
+import time
+
 from flask import Blueprint, jsonify, render_template, request
 import requests
 
@@ -34,6 +36,7 @@ def lookup_tweet():
         tweet_text = []
         for tweet in mytweetlist:
             tweet_text.append(tweet['text'])
+            time.sleep(1)
         return render_template('tweetlookup.html', tweet_text=tweet_text, username=username)
 
     except:
