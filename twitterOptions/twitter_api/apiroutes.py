@@ -1,21 +1,21 @@
-import json
-from time import sleep
-
-from flask import Blueprint, jsonify, render_template
+from flask import Blueprint, jsonify, render_template, request
 import requests
-from werkzeug.http import HTTP_STATUS_CODES
 
 twitter_api_blueprint = Blueprint("twitter_api", __name__, "url_prefix=/api/option")
 
 
+
 @twitter_api_blueprint.route('/', methods=['GET'])
 def landing_page():
+    # username = request.form["username"]
     return render_template('homepage.html')
 
 
 # Author-Mayuri(implement lookup tweets )
-@twitter_api_blueprint.route('/looktweet/<username>', methods=['GET'])
-def lookup_tweet(username):
+@twitter_api_blueprint.route('/looktweet', methods=['GET'])
+def lookup_tweet():
+    #fetch the username from the form
+    username = request.args.get('username')
     # find the userid of the passed username
     try:
         from helper.readyaml import read_yaml
