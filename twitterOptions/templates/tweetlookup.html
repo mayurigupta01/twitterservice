@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta char="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>lookfortweets</title>
+        <h style="font-weight: bold;color:red;font-size:20px;">Here are the tweets for {{username}}!!</h>
+    </head>
+    <body>
+      <br>
+      <br>
+       {% for tweet in tweet_text %}
+            <ul>
+                <li>{{tweet}}</li>
+            </ul>
+
+       {% endfor %}
+
+       <p style="color:blue;font-size:18px;">Thanks - twitter implementation </p>
+    </body>
+</html>
