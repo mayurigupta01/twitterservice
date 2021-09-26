@@ -17,25 +17,28 @@ def landing_page():
 @twitter_api_blueprint.route('/looktweet/<username>', methods=['GET'])
 def lookup_tweet(username):
     # find the userid of the passed username
+    try:
+        from helper.readyaml import read_yaml
+        my_dict = read_yaml()
+        from twitterOptions.twitter_api.UserOnTwitter import get_userid
+        user = get_userid(username)
+        userid = user['data']['id']
 
-    from helper.readyaml import read_yaml
-    my_dict = read_yaml()
-    from twitterOptions.twitter_api.UserOnTwitter import get_userid
-    user = get_userid(username)
-    userid = user['data']['id']
+        # create a request to fetch tweets and return response on web page- build a request that contains userid field.
+        my_headers = {'Authorization':
+                          'Bearer {}'.format(my_dict['credentials']['token'])}
 
-    # create a request to fetch tweets and return response on web page- build a request that contains userid field.
-    my_headers = {'Authorization':
-                      'Bearer {}'.format(my_dict['credentials']['token'])}
+        response = requests.get(url="https://api.twitter.com/2/users/{}/tweets".format(userid), headers=my_headers)
+        tweets = response.json()
+        mytweetlist = tweets['data']
+        tweet_text = []
+        for tweet in mytweetlist:
+            tweet_text.append(tweet['text'])
+        return render_template('tweetlookup.html', tweet_text=tweet_text, username=username)
 
-    response = requests.get(url="https://api.twitter.com/2/users/{}/tweets".format(userid), headers=my_headers)
-    tweets = response.json()
-    mytweetlist = tweets['data']
-    tweet_text = []
-    for tweet in mytweetlist:
-        tweet_text.append(tweet['text'])
-        print(tweet_text)
-    return render_template('tweetlookup.html', tweet_text=tweet_text, username=username)
+    except:
+        response = error_message()
+        return response
 
 
 @twitter_api_blueprint.route('/update', methods=['PUT'])
@@ -49,8 +52,7 @@ def delete():
 
 
 # Author-Mayuri
-def error_message(status_code, message):
-    payload = {'error': HTTP_STATUS_CODES.get(status_code, 'Unknown error')}
+def error_message():
+    payload = {'error': 400, "message": "Bad request", "possible error": "could be wrong username"}
     response = jsonify(payload)
-    response.status_code = status_code
     return response
