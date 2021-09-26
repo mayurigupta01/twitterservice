@@ -12,6 +12,7 @@ req_log = logging.getLogger('requests.packages.urllib3')
 req_log.setLevel(logging.DEBUG)
 req_log.propagate = True
 
+
 class TestStringMethods(unittest.TestCase):
 
     def test_tweet_lookup_1(self):
