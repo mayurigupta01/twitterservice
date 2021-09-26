@@ -9,10 +9,9 @@
         <br>
     </head>
    <body>
-          {% for options in twitter_options %}
-                 {{options}}
-          {% endfor %}
-            {% if options == 'look_tweet' %}
+        {% for options in twitter_options %}
+
+            {% if options == 'tweet_lookUp' %}
                <form action="/looktweet" method="GET" action="/">
                 <label for="tweet">Tweet Lookup:Enter Username:</label>
                 <input type="EnterUsername" name="username" ><br>
@@ -21,19 +20,28 @@
                 <br>
                 <br>
 
-            {% elif options == 'delete_tweet' %}
-                <form action="/delete" method="DELETE" action="/">
-                <label for="tweet">Re-Tweet Delete:Enter Username:</label>
-                <input type="EnterUsername" name="username" ><br>
-                <input type="submit" value="Submit">
-                </form>
-           {% endif %}
+            {% elif options == 'find_followers' %}
+                 <form action="/followers" method="GET" action="/">
+                 <label for="tweet">Find Followers:Enter Username:</label>
+                 <input type="EnterUsername" name="username" ><br>
+                  <input type="submit" value="Submit">
+                  <br>
+                  <br>
+                  <br>
+                  </form>
+
+            {% elif options == 'most_recent_tweet' %}
+                  <form action="/mostRecentTweet" method="GET" action="/">
+                  <label for="tweet">Most Recent Tweet:Enter Username</label>
+                  <input type="text" name="query" ><br>
+                  <input type="submit" value="Submit">
+                  </form>
+                  <br>
+                  <br>
+                  <br>
+            {% endif %}
+        {% endfor %}
       </body>
-
-        <br>
-        <br>
-        <br>
-
 
    </html>
 

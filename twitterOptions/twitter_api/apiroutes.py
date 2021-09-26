@@ -4,13 +4,12 @@ import json
 import requests
 from flask import Blueprint, jsonify, render_template, request
 
-
 twitter_api_blueprint = Blueprint("twitter_api", __name__, "url_prefix=/api/option")
 
 
 @twitter_api_blueprint.route('/', methods=['GET'])
 def landing_page():
-    twitter_options = ['look_tweet', 'delete_tweet']
+    twitter_options = ['tweet_lookUp', 'most_recent_tweet', 'find_followers']
     return render_template('homepage.html', twitter_options=twitter_options)
 
 
@@ -86,7 +85,7 @@ def update_tweet():
 @twitter_api_blueprint.route('/followers', methods=['GET'])
 def find_followers():
     username = request.args.get('username')
-    #username = 'elonmusk'
+    # username = 'elonmusk'
     # find the userid of the passed username
     from helper.readyaml import read_yaml
     my_dict = read_yaml()
@@ -105,10 +104,9 @@ def find_followers():
     follower_name = []
     # add just follower name in the list
     for tweet in mytweetlist:
-       follower_name.append(tweet['name'])
+        follower_name.append(tweet['name'])
     print(follower_name)
     return render_template('userfollowers.html', follower_name=follower_name, username=username)
-
 
 
 # Author-Mayuri
