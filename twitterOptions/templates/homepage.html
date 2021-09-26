@@ -3,23 +3,24 @@
     <head>
     <meta char="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>lookfortweets</title>
-        <h style="font-weight: bold;color:red;font-size:20px;">Choose your twitter functions</h>
+        <title>Twitter Service Implementation</title>
+        <h style="font-weight: bold;color:red;font-size:20px;">Choose your Twitter Function:</h>
         <br>
         <br>
     </head>
      <body>
        <form action="/looktweet" method="GET" action="/">
         <label for="tweet">Tweet Lookup:</label>
-        <input type="EnterUsername" name="username" required><br>
+        <input type="EnterUsername" name="username" required>
         <input type="submit" value="Submit">
-
-
-        <br>
-        <br>
-        <br>
-
        </form>
+       <br>
+       <form action="/mostRecentTweet" method="GET" action="/">
+        <label for="tweet">Most Recent Tweet:</label>
+        <input type="text" name="query" required>
+        <input type="submit" value="Submit">
+       </form>
+       <br>
      </body>
    </html>
 

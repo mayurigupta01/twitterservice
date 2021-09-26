@@ -1,7 +1,7 @@
 import time
 
 from flask import Blueprint, jsonify, render_template, request
-import requests
+import requests, json
 
 twitter_api_blueprint = Blueprint("twitter_api", __name__, "url_prefix=/api/option")
 
@@ -43,6 +43,35 @@ def lookup_tweet():
         response = error_message()
         return response
 
+# Author - Martin Duong
+@twitter_api_blueprint.route('/mostRecentTweet', methods=['GET'])
+def mostRecentTweet():
+    # Fetch and build query
+    query = request.args.get('query')
+    newQuery = "?query=" + query + " -is:retweet"
+
+    try:
+        from helper.readyaml import read_yaml
+        my_dict = read_yaml()
+
+        auth = {"Authorization": "Bearer {}".format(my_dict['credentials']['token'])}
+        url = "https://api.twitter.com/2/tweets/search/recent{}".format(newQuery)
+
+        response = requests.request("GET", url, headers = auth)
+
+        # Convert from JSON object to JSON string to Python Dictionary
+        tweets = json.loads(json.dumps(response.json()))
+
+        # Checks if no tweets are found from user search
+        if(response.status_code == 200 and response.text == "{\"meta\":{\"result_count\":0}}"):
+            return render_template('mostRecentTweet.html', recentTweet = "No Tweets Found", query = query)
+
+        # Returns the most recent tweet from user search
+        recentTweet = tweets["data"][0]["text"]
+        return render_template('mostRecentTweet.html', recentTweet = recentTweet, query = query)
+    except:
+        response = recentTweetError(response.status_code, response.text)
+        return response
 
 @twitter_api_blueprint.route('/update', methods=['PUT'])
 def update_tweet():
@@ -59,5 +88,11 @@ def delete():
 # Author-Mayuri
 def error_message():
     payload = {'error': 400, "message": "Bad request", "possible error": "could be wrong username"}
+    response = jsonify(payload)
+    return response
+
+# Author - Martin Duong
+def recentTweetError(responseCode, responseText):
+    payload = {'error': responseCode, "message": responseText}
     response = jsonify(payload)
     return response
