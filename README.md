@@ -18,3 +18,10 @@ ArianaGrande
 justinbieber
 BrunoMars
 ladygaga
+
+ 
+  To Run the project add below lines
+  export FLASK_ENV= developement
+  export FLASK_APP=run.py
+  flask run 
+  
