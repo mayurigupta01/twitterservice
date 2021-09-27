@@ -58,7 +58,6 @@ def hide_tweet(tweetid):
     my_headers = {'Authorization': 'OAuth oauth_consumer_key="{}",oauth_token="{}",oauth_signature_method="HMAC-SHA1",oauth_nonce="65FB5akRnAK",oauth_version="1.0",oauth_signature="maLA%2FHVv5gSofBKPQmef72JvXGg%3D"'.format(mydict['credentials']['oauth1_consumer_key'],mydict['credentials']['oauth1_access_token']),
   'Content-Type': 'application/json'}
     response = requests.put(url="https://api.twitter.com/2/tweets/{}/hidden".format(tweetid), headers=my_headers,json={"hidden":"true"})
-    response =
     return redirect('/twitter_tweets',success = "success")
 
 
