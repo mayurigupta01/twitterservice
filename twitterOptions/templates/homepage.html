@@ -42,7 +42,7 @@
             <br>
 
             {% elif options == 'update_tweet' %}
-            <form action="/      " method="GET" action="/">
+            <form action="/      " method="PUT" action="/">
                 <label style="font-weight: bold;color:blue;font-size:18px;">Find a User's Followers:</label>
                 <input style="border-style: solid;"type="     " name="      " placeholder="Enter     ">
                 <input style="font-weight: bold;font-size:14px;" type="submit" value="Submit">
@@ -50,6 +50,18 @@
             <br>
             <br>
             <br>
+
+            {% elif options == 'create_tweet' %}
+                   <form action="/createtweet" method="POST" action="/">
+                   <label style="font-weight: bold;color:blue;font-size:18px;">Enter the text to post:</label>
+                   <input style="border-style: solid;"type="text" name="text" ><br>
+                   <br>
+                   <br>
+                   <input style="font-weight: bold;font-size:20px;" type="submit" value="Submit">
+                   </form>
+                      <br>
+                      <br>
+                      <br>
             {% endif %}
         {% endfor %}
       </body>
