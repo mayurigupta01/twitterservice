@@ -3,16 +3,18 @@
         <title>Tweets Timeline for User</title>
         <script>
             function redirect(tweet_id){
-                windows.location.href = window.location.protocol + "//" + window.location.host + "/hide_tweet/" + tweet_id
+                console.log(window.location.protocol + "//" + window.location.host + "/hide_tweet/" + tweet_id)
+                window.location.href = window.location.protocol + "//" + window.location.host + "/hide_tweet/" + tweet_id
             }
         </script>
     </head>
     <body>
+        
         <ul>
         {%for tweet in tweets.data%}
         <li>
             <ul>{{tweet.text}}</ul>
-            <ul><input type="submit" data-id="{{tweet.id}}" name="Hide"/></ul>
+            <ul><button id="{{tweet.id}}" name="Hide" onclick="redirect('{{tweet.id}}')" />Hide</ul>
         </li>
         {%endfor%}
     </ul>

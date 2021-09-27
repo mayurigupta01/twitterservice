@@ -1,7 +1,7 @@
 import json
 from time import sleep
 
-from flask import Blueprint, jsonify, render_template
+from flask import Blueprint, jsonify, render_template,redirect, url_for
 from helper.readyaml import read_yaml
 import requests
 from werkzeug.http import HTTP_STATUS_CODES
@@ -26,7 +26,6 @@ def lookup_tweet(username):
         # create a request to fetch tweets and return response on web page- build a request that contains userid field.
         my_headers = {'Authorization':
                           'Bearer {}'.format(my_dict['credentials']['token'])}
-
         response = requests.get(url="https://api.twitter.com/2/users/{}/tweets".format(userid), headers=my_headers)
         tweets = response.json()
         mytweetlist = tweets['data']
@@ -43,24 +42,24 @@ def lookup_tweet(username):
 @twitter_api_blueprint.route('/twitter_tweets', methods=['GET'])
 def get_tweets():
     my_dict = read_yaml()
-    print(my_dict['credentials']['user_id'])
     my_headers = {'Authorization':
                           'Bearer {}'.format(my_dict['credentials']['token'])}
     response = requests.get(url="https://api.twitter.com/2/users/{}/tweets".format(my_dict['credentials']['user_id']),headers=my_headers)
     if response.ok:
         results = response.json()
-        return render_template('tweethiding.html',tweets = results)
+        return render_template('tweethiding.html',tweets = results, success = "failure")
     else:
         return response.raise_for_status();
-    
 
 @twitter_api_blueprint.route('/hide_tweet/<tweetid>', methods=['GET'])
 def hide_tweet(tweetid):
     my_dict = read_yaml()
-    my_headers = {'Authorization':
-                          'Bearer {}'.format(my_dict['credentials']['token'])}
-    response = requests.put(url="https://api.twitter.com/2/tweets/{}/hidden".format(tweetid), headers=my_headers,json={"hidden":true})
-    return {"message": "retweet tweet successfully"}
+    print(tweetid,my_dict)
+    my_headers = {'Authorization': 'OAuth oauth_consumer_key="{}",oauth_token="{}",oauth_signature_method="HMAC-SHA1",oauth_nonce="65FB5akRnAK",oauth_version="1.0",oauth_signature="maLA%2FHVv5gSofBKPQmef72JvXGg%3D"'.format(mydict['credentials']['oauth1_consumer_key'],mydict['credentials']['oauth1_access_token']),
+  'Content-Type': 'application/json'}
+    response = requests.put(url="https://api.twitter.com/2/tweets/{}/hidden".format(tweetid), headers=my_headers,json={"hidden":"true"})
+    response =
+    return redirect('/twitter_tweets',success = "success")
 
 
 @twitter_api_blueprint.route('/delete', methods=['DELETE'])
