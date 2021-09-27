@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <title>Tweets Timeline for User</title>
+        <script>
+            function redirect(tweet_id){
+                windows.location.href = window.location.protocol + "//" + window.location.host + "/hide_tweet/" + tweet_id
+            }
+        </script>
+    </head>
+    <body>
+        <ul>
+        {%for tweet in tweets.data%}
+        <li>
+            <ul>{{tweet.text}}</ul>
+            <ul><input type="submit" data-id="{{tweet.id}}" name="Hide"/></ul>
+        </li>
+        {%endfor%}
+    </ul>
+    </body>
+</html>
