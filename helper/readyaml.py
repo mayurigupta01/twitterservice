@@ -12,5 +12,3 @@ def read_yaml():
         except yaml.YAMLError as exc:
             print(exc)
     return my_dict
-
-

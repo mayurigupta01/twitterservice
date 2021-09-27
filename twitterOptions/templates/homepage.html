@@ -3,8 +3,48 @@
     <head>
     <meta char="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Twitter Service Implementation</title>
+        <h style="font-weight: bold;color:red;font-size:20px;">Choose your Twitter Function:Enter your favourite Twitter User</h>
+        <br>
+        <br>
+    </head>
+   <body>
+        {% for options in twitter_options %}
+
+            {% if options == 'tweet_lookUp' %}
+               <form action="/looktweet" method="GET" action="/">
+                <label style="font-weight: bold;color:blue;font-size:18px;">Tweet Lookup:</label>
+                <input style = "border-style: solid;" type="EnterUsername" name="username" ><br>
+                <input style="font-weight: bold;font-size:20px;" type="submit" value="Submit">
+                <br>
+                <br>
+                <br>
+
+            {% elif options == 'find_followers' %}
+                 <form action="/followers" method="GET" action="/">
+                 <label style="font-weight: bold;color:blue;font-size:18px;">Find Followers:</label>
+                 <input style="border-style: solid;"type="EnterUsername" name="username" ><br>
+                  <input style="font-weight: bold;font-size:20px;" type="submit" value="Submit">
+                  <br>
+                  <br>
+                  <br>
+                  </form>
+
+            {% elif options == 'most_recent_tweet' %}
+                  <form action="/mostRecentTweet" method="GET" action="/">
+                  <label style="font-weight: bold;color:blue;font-size:18px;">Find Most Recent Tweet</label>
+                  <input style="border-style: solid;" type="text" name="query" ><br>
+                  <input style="font-weight: bold;font-size:20px;" type="submit" value="Submit">
+                  </form>
+                  <br>
+                  <br>
+                  <br>
+            {% endif %}
+        {% endfor %}
         <title>lookfortweets</title>
         <h style="font-weight: bold;color:red;font-size:20px;">Choose your twitter functions</h>
         <a href="/twitter_tweets"><label style="font-weight: bold;color:blue;font-size:18px;">Hide Selected Tweet</label></a>
-   </head>
-</html>
+      </body>
+
+   </html>
+
