@@ -82,7 +82,7 @@ def update_tweet():
     return {"message": "retweet tweet successfully"}
 
 
-# Author- Mayuri
+# Author- Mayuri & Pratiksha
 @twitter_api_blueprint.route('/followers', methods=['GET'])
 def find_followers():
     username = request.args.get('username')
@@ -112,18 +112,14 @@ def find_followers():
 # Author- Mayuri
 @twitter_api_blueprint.route('/createtweet', methods=['POST'])
 def create_tweet():
-    text = 'tweet from twitter service'
-    print(text)
-
+    text = request.form['tweet']
+    from helper.readyaml import read_yaml
+    my_dict = read_yaml()
     # create a request to post tweets and return response on web page that tweet is successfully created.
-    twitter_oauth = {
-        "consumer_key": "Nt5n3NnTPppp14X0zhTBCDzgh",
-        "consumer_secret": "pO9dzAxVkWwXv1gmRF6ab2pzc3O8gsacXRTfj42ctuApXsNcpq",
-        "token": "1437176256022253568-PN9skR05AWQ75tz4df6woUUhibEps7",
-        "token_secret": "yzNGz73qWqqFOZ6dlj2qHxogpfkGIuaJHZeJfYq9oTCOX",
-    }
-    auth_session = OAuth1(twitter_oauth["consumer_key"], twitter_oauth["consumer_secret"], twitter_oauth["token"],
-                          twitter_oauth["token_secret"])
+
+    auth_session = OAuth1(my_dict['credentials']['consumerkey'], my_dict['credentials']['consumersecret'],
+                          my_dict['credentials']['accesstoken'],
+                          my_dict['credentials']['tokensecret'])
     response = requests.post(url="https://api.twitter.com/1.1/statuses/update.json?status={}".format(text),
                              auth=auth_session)
     return response.json()
