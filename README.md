@@ -28,7 +28,7 @@ Authors: Aman Shah, Martin Duong, Mayuri Gupta, Pratiksha Shukla
 
 - Search Most Recent Tweet
   - Allows the user to enter any query they wish and the most recent tweet from the user's query will be returned.
-  - This function returns a single, most recent tweet that contains the user's query, not taking into account Retweets.
+  - Returns a single, most recent tweet that contains the user's query, excluding Retweets.
     ![Capture](https://user-images.githubusercontent.com/2999334/134836424-17abf3a4-256a-4c39-8a18-8793a9598235.PNG)
     ![Capture6](https://user-images.githubusercontent.com/2999334/134837215-16e4b336-b963-4d8b-a0a5-928fe6b1cc5f.PNG)
 
