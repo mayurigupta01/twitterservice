@@ -3,6 +3,7 @@
 https://developer.twitter.com/en/docs/twitter-api/v1/tweets/post-and-engage/overview
 
 Authors: Aman Shah, Martin Duong, Mayuri Gupta, Pratiksha Shukla
+
 Team: Squirtle Squad
 
 ## How to Run the Project
@@ -18,6 +19,7 @@ Team: Squirtle Squad
 ## Overview of API Endpoints Created in the Project
 
 - Homepage: http://127.0.0.1:5000/
+  ![Capture13](https://user-images.githubusercontent.com/2999334/134846671-9120d5ff-2c7c-40f5-ba80-e3f2338d57ac.PNG)
 
 - Tweet LookUp by Username: Get http://127.0.0.1:5000/looktweet?username=<>
   - Allows the user to enter a Twitter user they wish to retrieve tweets from.
@@ -41,6 +43,11 @@ Team: Squirtle Squad
     ![Capture6](https://user-images.githubusercontent.com/2999334/134837215-16e4b336-b963-4d8b-a0a5-928fe6b1cc5f.PNG)
     
     ![Capture9](https://user-images.githubusercontent.com/2999334/134838053-1b3d37be-0cb0-456f-8c8e-2572925ba631.PNG)
+    
+  - Tweets that have no results will return “No Tweets Found”
+  
+    ![Capture11](https://user-images.githubusercontent.com/2999334/134847007-e76f88a6-ef20-4335-9270-00302f18f737.PNG)
+
 
 - Get the Followers of a Given Username
   - Allows the user to enter any Twitter user they wish and a list of their Followers will be returned.
@@ -51,7 +58,18 @@ Team: Squirtle Squad
     
     ![Capture8](https://user-images.githubusercontent.com/2999334/134838033-5d206fe6-96a4-4f72-acd0-407afcf5fe2c.PNG)
 
-- **Update Tweet 
+- Update Tweet 
+
+- Post Tweet
+  - Allows the user to post a tweet
+  
+![Capture12](https://user-images.githubusercontent.com/2999334/134846899-08892dda-2ec3-46c7-8f39-8ad806c85b89.PNG)
+
+![Capture15](https://user-images.githubusercontent.com/2999334/134846906-8b4d813c-e2e5-4138-af71-d797c2316679.PNG)
+
+![Capture16](https://user-images.githubusercontent.com/2999334/134846913-3b2dc0a5-f044-4bc4-8c37-0eb08a3b8ec1.PNG)
 
 ## Unit Tests
- - [insert img here]
+- Unit Tests for the following functions: Tweet LookUp by Username, Search Most Recent Tweet, and Get the Followers of a Given Username
+
+  ![Capture14](https://user-images.githubusercontent.com/2999334/134846783-21e7d565-d5d2-44cb-ad84-09bc736ef1c9.PNG)
