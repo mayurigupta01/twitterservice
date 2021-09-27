@@ -34,6 +34,10 @@ class TestStringMethods(unittest.TestCase):
     def test_user_follower2(self):
         response = requests.get(api_base_url + "followers?username=BrunoMars")
         self.assertEqual(response.status_code, 200)
-
+    
+    def test_find_tweets(self):
+        response = requests.get(api_base_url + "twitter_tweets")
+        self.assertEqual(response.status_code, 200)
+        
 if __name__ == '__main__':
     unittest.main()

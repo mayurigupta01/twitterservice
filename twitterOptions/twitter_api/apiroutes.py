@@ -52,19 +52,24 @@ def get_tweets():
     response = requests.get(url="https://api.twitter.com/2/users/{}/tweets".format(my_dict['credentials']['user_id']),headers=my_headers)
     if response.ok:
         results = response.json()
-        return render_template('tweethiding.html',tweets = results, success = "failure")
+        return render_template('tweethiding.html',tweets = results)
     else:
         return response.raise_for_status();
 
 #Author-Aman
 @twitter_api_blueprint.route('/hide_tweet/<tweetid>', methods=['GET'])
 def hide_tweet(tweetid):
-    my_dict = read_yaml()
-    print(tweetid,my_dict)
+    mydict = read_yaml()
     my_headers = {'Authorization': 'OAuth oauth_consumer_key="{}",oauth_token="{}",oauth_signature_method="HMAC-SHA1",oauth_nonce="65FB5akRnAK",oauth_version="1.0",oauth_signature="maLA%2FHVv5gSofBKPQmef72JvXGg%3D"'.format(mydict['credentials']['oauth1_consumer_key'],mydict['credentials']['oauth1_access_token']),
   'Content-Type': 'application/json'}
     response = requests.put(url="https://api.twitter.com/2/tweets/{}/hidden".format(tweetid), headers=my_headers,json={"hidden":"true"})
-    return redirect('/twitter_tweets',success = "success")
+    return redirect('/success')
+
+#Author-Aman
+@twitter_api_blueprint.route('/success', methods=['GET'])
+def success():
+    return render_template("success.html")
+
 # Author - Martin Duong
 @twitter_api_blueprint.route('/mostRecentTweet', methods=['GET'])
 def mostRecentTweet():
