@@ -4,7 +4,7 @@
     <meta char="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Twitter Service Implementation</title>
-        <h style="font-weight: bold;color:red;font-size:20px;">Choose your Twitter Function:Enter your favourite Twitter User</h>
+        <h style="font-weight: bold;color:black;font-size:28px;"><u>Twitter Service Implementation</u></h>
         <br>
         <br>
     </head>
@@ -12,33 +12,54 @@
         {% for options in twitter_options %}
 
             {% if options == 'tweet_lookUp' %}
-               <form action="/looktweet" method="GET" action="/">
-                <label style="font-weight: bold;color:blue;font-size:18px;">Tweet Lookup:</label>
-                <input style = "border-style: solid;" type="EnterUsername" name="username" ><br>
-                <input style="font-weight: bold;font-size:20px;" type="submit" value="Submit">
+                <form action="/looktweet" method="GET" action="/">
+                    <label style="font-weight: bold;color:blue;font-size:18px;">Look Up a User's Tweets:</label>
+                    <input style = "border-style: solid;" type="EnterUsername" name="username" placeholder="Enter Username">
+                    <input style="font-weight: bold;font-size:14px;" type="submit" value="Submit">
+                </form>
+                <br>
+                <br>
+                <br>
+
+            {% elif options == 'most_recent_tweet' %}
+                <form action="/mostRecentTweet" method="GET" action="/">
+                    <label style="font-weight: bold;color:blue;font-size:18px;">Find Most Recent Tweet:</label>
+                    <input style="border-style: solid;" type="text" name="query" placeholder="Enter Anything">
+                    <input style="font-weight: bold;font-size:14px;" type="submit" value="Submit">
+                </form>
                 <br>
                 <br>
                 <br>
 
             {% elif options == 'find_followers' %}
-                 <form action="/followers" method="GET" action="/">
-                 <label style="font-weight: bold;color:blue;font-size:18px;">Find Followers:</label>
-                 <input style="border-style: solid;"type="EnterUsername" name="username" ><br>
-                  <input style="font-weight: bold;font-size:20px;" type="submit" value="Submit">
-                  <br>
-                  <br>
-                  <br>
-                  </form>
+            <form action="/followers" method="GET" action="/">
+                <label style="font-weight: bold;color:blue;font-size:18px;">Find a User's Followers:</label>
+                <input style="border-style: solid;"type="EnterUsername" name="username" placeholder="Enter Username">
+                <input style="font-weight: bold;font-size:14px;" type="submit" value="Submit">
+            </form>
+            <br>
+            <br>
+            <br>
 
-            {% elif options == 'most_recent_tweet' %}
-                  <form action="/mostRecentTweet" method="GET" action="/">
-                  <label style="font-weight: bold;color:blue;font-size:18px;">Find Most Recent Tweet</label>
-                  <input style="border-style: solid;" type="text" name="query" ><br>
-                  <input style="font-weight: bold;font-size:20px;" type="submit" value="Submit">
-                  </form>
-                  <br>
-                  <br>
-                  <br>
+            {% elif options == 'update_tweet' %}
+            <form action="/      " method="PUT" action="/">
+                <label style="font-weight: bold;color:blue;font-size:18px;">Find a User's Followers:</label>
+                <input style="border-style: solid;"type="     " name="      " placeholder="Enter     ">
+                <input style="font-weight: bold;font-size:14px;" type="submit" value="Submit">
+            </form>
+            <br>
+            <br>
+            <br>
+
+            {% elif options == 'create_tweet' %}
+                <form action="/createtweet" method="POST" action="/">
+                    <label style="font-weight: bold;color:blue;font-size:18px;">Enter the text to post:</label>
+                    <input style="border-style: solid;"type="text" name="tweet" placeholder="Enter Tweet">
+                    <input style="font-weight: bold;font-size:14px;" type="submit" value="Submit">
+                </form>
+                    <br>
+                    <br>
+                    <br>
             {% endif %}
         {% endfor %}
         <a href="/twitter_tweets"><label style="font-weight: bold;color:blue;font-size:18px;">Hide Selected Tweet</label></a>

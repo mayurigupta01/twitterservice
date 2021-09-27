@@ -5,13 +5,14 @@ from helper.readyaml import read_yaml
 import json
 import requests
 from flask import Blueprint, jsonify, render_template, request
+from requests_oauthlib import OAuth1
 
 twitter_api_blueprint = Blueprint("twitter_api", __name__, "url_prefix=/api/option")
 
 
 @twitter_api_blueprint.route('/', methods=['GET'])
 def landing_page():
-    twitter_options = ['tweet_lookUp', 'most_recent_tweet', 'find_followers']
+    twitter_options = ['tweet_lookUp', 'most_recent_tweet', 'find_followers', 'create_tweet']
     return render_template('homepage.html', twitter_options=twitter_options)
 
 
@@ -106,11 +107,10 @@ def update_tweet():
     return {"message": "retweet tweet successfully"}
 
 
-# Author- Mayuri
+# Author- Mayuri & Pratiksha
 @twitter_api_blueprint.route('/followers', methods=['GET'])
 def find_followers():
     username = request.args.get('username')
-    # username = 'elonmusk'
     # find the userid of the passed username
     from helper.readyaml import read_yaml
     my_dict = read_yaml()
@@ -132,6 +132,22 @@ def find_followers():
         follower_name.append(tweet['name'])
     print(follower_name)
     return render_template('userfollowers.html', follower_name=follower_name, username=username)
+
+
+# Author- Mayuri
+@twitter_api_blueprint.route('/createtweet', methods=['POST'])
+def create_tweet():
+    text = request.form['tweet']
+    from helper.readyaml import read_yaml
+    my_dict = read_yaml()
+    # create a request to post tweets and return response on web page that tweet is successfully created.
+
+    auth_session = OAuth1(my_dict['credentials']['consumerkey'], my_dict['credentials']['consumersecret'],
+                          my_dict['credentials']['accesstoken'],
+                          my_dict['credentials']['tokensecret'])
+    response = requests.post(url="https://api.twitter.com/1.1/statuses/update.json?status={}".format(text),
+                             auth=auth_session)
+    return response.json()
 
 
 # Author-Mayuri
