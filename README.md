@@ -19,18 +19,24 @@ Authors: Aman Shah, Martin Duong, Mayuri Gupta, Pratiksha Shukla
 - Homepage: http://127.0.0.1:5000/
 
 - Tweet LookUp by Username: Get http://127.0.0.1:5000/looktweet?username=<>
-  - Allows the user to enter a twitter user they wish to retrieve tweets from.
-    - [insert img here]
-  - Enter any username in the above input text Box and click Submit.
-    - [insert img here]
+  - Allows the user to enter a Twitter user they wish to retrieve tweets from.
+    ![Capture3](https://user-images.githubusercontent.com/2999334/134836637-c171141a-0347-4c88-8f1f-cd1f02f66d7d.PNG)
+  - Enter any username in the above input text box and click Submit.
+    ![Capture4](https://user-images.githubusercontent.com/2999334/134836731-4c7aaa90-63bf-4e1e-bc12-f8d59d84d256.PNG)
   - User is directed to API Route - http://127.0.0.1:5000/looktweet?username=ArianaGrande and the web page shows the retrieved tweets of the username entered.
-    - [insert img here]
+    ![Capture5](https://user-images.githubusercontent.com/2999334/134836808-33185305-8956-40fb-a081-3fc90f434f9e.PNG)
 
 - Search Most Recent Tweet
   - Allows the user to enter any query they wish and the most recent tweet from the user's query will be returned.
-    - [insert img here]
+  - This function returns a single, most recent tweet that contains the user's query, not taking into account Retweets.
+    ![Capture](https://user-images.githubusercontent.com/2999334/134836424-17abf3a4-256a-4c39-8a18-8793a9598235.PNG)
+    ![Capture6](https://user-images.githubusercontent.com/2999334/134837215-16e4b336-b963-4d8b-a0a5-928fe6b1cc5f.PNG)
 
-- Get the Followers of a given Username
+- Get the Followers of a Given Username
+  - Allows the user to enter any Twitter user they wish and a list of their Followers will be returned.
+    ![Capture2](https://user-images.githubusercontent.com/2999334/134836572-b53ad124-8e31-4ef4-bf21-1efc93363729.PNG)
+    ![Capture7](https://user-images.githubusercontent.com/2999334/134837365-b31be878-b394-4788-be04-475b96c82749.PNG)
+    ![Capture8](https://user-images.githubusercontent.com/2999334/134837431-489551e3-1139-4327-a052-067cb103aa53.PNG)
 
 - Update Tweet 
 
