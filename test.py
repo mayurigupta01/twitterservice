@@ -35,5 +35,20 @@ class TestStringMethods(unittest.TestCase):
         response = requests.get(api_base_url + "followers?username=BrunoMars")
         self.assertEqual(response.status_code, 200)
 
+    # Test normal input
+    def test_recent_tweet1(self):
+        response = requests.get(api_base_url + "mostRecentTweet?query=SJSU")
+        self.assertEqual(response.status_code, 200)
+    
+    # Test input with whitespaces
+    def test_recent_tweet2(self):
+        response = requests.get(api_base_url + "mostRecentTweet?query=San+Jose+State+University")
+        self.assertEqual(response.status_code, 200)
+    
+    # Test input that returns no tweets found
+    def test_recent_tweet3(self):
+        response = requests.get(api_base_url + "mostRecentTweet?query=SJSUusjs")
+        self.assertEqual(response.status_code, 200)
+
 if __name__ == '__main__':
     unittest.main()
