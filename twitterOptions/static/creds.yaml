@@ -2,9 +2,9 @@
 #list of twitter user for each operation
 credentials:
   token: AAAAAAAAAAAAAAAAAAAAAMo2UAEAAAAA7skJn6KQ8DS4cLXDJhdvlUhma4w%3D9ilenVtJh2CpW7Zv5dRFAuwU0Q9WJyiyvaUPM0YokC27KfwqOe
-  user_id: 270808591
-  username: shahaman06
-  oauth1_consumer_key: n4tPr5R2CxoDUcGTWgb9scDSm
-  oauth1_consumer_secret: fY3WQAmBcRiunNDF9hIEqCALHTqSV3DqkhKlfJTVkfz9uD4Y7N
-  oauth1_access_token: 270808591-qH2iYIZvqtoUZiZUX1Cdj2iIDtdIBM2sSioofekt
-  oauth1_access_token_secret: oToo3nYYu6X4OgxVNeYvl0G6bAe8wS1ut37fL8S09gQx3
+  user_id: 1437176256022253568
+  username: Gupta01Mayuri
+  consumerkey: n4tPr5R2CxoDUcGTWgb9scDSm
+  consumersecret: fY3WQAmBcRiunNDF9hIEqCALHTqSV3DqkhKlfJTVkfz9uD4Y7N
+  accesstoken: 270808591-qH2iYIZvqtoUZiZUX1Cdj2iIDtdIBM2sSioofekt
+  tokensecret: oToo3nYYu6X4OgxVNeYvl0G6bAe8wS1ut37fL8S09gQx3

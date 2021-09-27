@@ -5,7 +5,6 @@ from helper.readyaml import read_yaml
 import json
 import requests
 from flask import Blueprint, jsonify, render_template, request
-from requests_oauthlib import OAuth1
 
 twitter_api_blueprint = Blueprint("twitter_api", __name__, "url_prefix=/api/option")
 
@@ -61,7 +60,7 @@ def get_tweets():
 @twitter_api_blueprint.route('/hide_tweet/<tweetid>', methods=['GET'])
 def hide_tweet(tweetid):
     mydict = read_yaml()
-    my_headers = {'Authorization': 'OAuth oauth_consumer_key="{}",oauth_token="{}",oauth_signature_method="HMAC-SHA1",oauth_nonce="65FB5akRnAK",oauth_version="1.0",oauth_signature="maLA%2FHVv5gSofBKPQmef72JvXGg%3D"'.format(mydict['credentials']['oauth1_consumer_key'],mydict['credentials']['oauth1_access_token']),
+    my_headers = {'Authorization': 'OAuth oauth_consumer_key="{}",oauth_token="{}",oauth_signature_method="HMAC-SHA1",oauth_nonce="65FB5akRnAK",oauth_version="1.0",oauth_signature="maLA%2FHVv5gSofBKPQmef72JvXGg%3D"'.format(mydict['credentials']['consumerkey'],mydict['credentials']['accesstoken']),
   'Content-Type': 'application/json'}
     response = requests.put(url="https://api.twitter.com/2/tweets/{}/hidden".format(tweetid), headers=my_headers,json={"hidden":"true"})
     return redirect('/success')
@@ -70,6 +69,10 @@ def hide_tweet(tweetid):
 @twitter_api_blueprint.route('/success', methods=['GET'])
 def success():
     return render_template("success.html")
+
+@twitter_api_blueprint.route('/failure', methods=['GET'])
+def failure():
+    return render_template("failure.html")
 
 # Author - Martin Duong
 @twitter_api_blueprint.route('/mostRecentTweet', methods=['GET'])
