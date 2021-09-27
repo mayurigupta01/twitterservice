@@ -27,6 +27,13 @@ class TestStringMethods(unittest.TestCase):
         response = requests.get(api_base_url + "looktweet?username=Katyperry")
         self.assertEqual(response.status_code, 200)
 
+    def test_user_follower1(self):
+        response = requests.get(api_base_url + "followers?username=rihanna")
+        self.assertEqual(response.status_code, 200)
+
+    def test_user_follower2(self):
+        response = requests.get(api_base_url + "followers?username=BrunoMars")
+        self.assertEqual(response.status_code, 200)
 
 if __name__ == '__main__':
     unittest.main()
